@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;cURL&quot;,&quot;Javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -305,7 +305,8 @@
     <div class="toc-wrapper">
       <img src="images/dk-logo-a269faf1.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="cURL">cURL</a>
+              <a href="#" data-language-name="Javascript">Javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -351,13 +352,50 @@
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#mapping-field" class="toc-h1 toc-link" data-title="Mapping Field">Mapping Field</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#job" class="toc-h2 toc-link" data-title="Job">Job</a>
+                  </li>
+                  <li>
+                    <a href="#job-type" class="toc-h2 toc-link" data-title="Job Type">Job Type</a>
+                  </li>
+                  <li>
+                    <a href="#job-online" class="toc-h2 toc-link" data-title="Job Online">Job Online</a>
+                  </li>
+                  <li>
+                    <a href="#income" class="toc-h2 toc-link" data-title="Income">Income</a>
+                  </li>
+                  <li>
+                    <a href="#asset" class="toc-h2 toc-link" data-title="Asset">Asset</a>
+                  </li>
+                  <li>
+                    <a href="#home-ownership" class="toc-h2 toc-link" data-title="Home Ownership">Home Ownership</a>
+                  </li>
+                  <li>
+                    <a href="#business-ownership" class="toc-h2 toc-link" data-title="Business Ownership">Business Ownership</a>
+                  </li>
+                  <li>
+                    <a href="#emergency-contact-relationship" class="toc-h2 toc-link" data-title="Emergency Contact Relationship">Emergency Contact Relationship</a>
+                  </li>
+                  <li>
+                    <a href="#religion" class="toc-h2 toc-link" data-title="Religion">Religion</a>
+                  </li>
+                  <li>
+                    <a href="#education" class="toc-h2 toc-link" data-title="Education">Education</a>
+                  </li>
+                  <li>
+                    <a href="#work-experience" class="toc-h2 toc-link" data-title="Work Experience">Work Experience</a>
+                  </li>
+                  <li>
+                    <a href="#bank-names" class="toc-h2 toc-link" data-title="Bank Names">Bank Names</a>
+                  </li>
+                  <li>
+                    <a href="#legal-type" class="toc-h2 toc-link" data-title="Legal Type">Legal Type</a>
+                  </li>
+              </ul>
           </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -379,6 +417,17 @@
     "idNumber" : "362638287638783",
     "birthDate" : "30/09/1999"
 }'</span>
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>curl --location --request POST '{{host}}/v1/borrower/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "map" : "PERSONAL_BORROWER",
+    "productCode" : "95",
+    "phoneNumber" : "62123123123",
+    "email" : "johndoe@mail.com",
+    "fullName" : "John",
+    "idNumber" : "362638287638783",
+    "birthDate" : "30/09/1999"
+}'
 </code></pre></div>
 <blockquote>
 <p>Response Sukses:</p>
@@ -1223,69 +1272,448 @@
 <!-- <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>  -->
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
+<h1 id='mapping-field'>Mapping Field</h1>
+<!-- <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+</aside> -->
+<h2 id='job'>Job</h2>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Field Name</th>
+<th>Option</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td></td>
+<td>PNS <div style="width:40vh"></td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td></td>
+<td>Karyawan BUMN</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td></td>
+<td>Karyawan Swasta</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Job</td>
+<td>Pelajar / Mahasiswa</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td></td>
+<td>Lain - Lain</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td></td>
+<td>Tidak Bekerja / Bukan Pelajar</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td></td>
+<td>Wiraswasta</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td><div style="width:25vh"></td>
+<td>TNI / POLRI</td>
+</tr>
+</tbody></table>
+<h2 id='job-type'>Job Type</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>Pertanian, Perburuan dan Kehutanan <div style="width:40vh"></td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td></td>
+<td>Perikanan</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td></td>
+<td>Pertambangan dan Penggalian</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td></td>
+<td>Industri Pengolahan</td>
+</tr>
+<tr>
+<td></td>
+<td>Listrik, Gas, dan Air</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>Konstruksi</td>
+</tr>
+<tr>
+<td></td>
+<td>Perdagangan Besar dan Eceran</td>
+</tr>
+<tr>
+<td></td>
+<td>Penyediaan Akomodasi dan Penyediaan Makan Minum</td>
+</tr>
+<tr>
+<td></td>
+<td>Transportasi, Pergudangan, dan Komunikasi</td>
+</tr>
+<tr>
+<td>JobType</td>
+<td>Perantara Keuangan</td>
+</tr>
+<tr>
+<td></td>
+<td>Administrasi Pemerintahan, Pertahanan, dan Jaminan Sosial Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td>Jasa Pendidikan</td>
+</tr>
+<tr>
+<td></td>
+<td>Jasa Kesehatan dan Kegiatan Sosial</td>
+</tr>
+<tr>
+<td></td>
+<td>Kegiatan Organisasi Yang Tidak Diklasifikasi Ditempat Lain</td>
+</tr>
+<tr>
+<td></td>
+<td>Jasa Perorangan yang Melayani Rumah Tangga</td>
+</tr>
+<tr>
+<td></td>
+<td>Badan Internasional dan Badan Ekstra Internasional</td>
+</tr>
+<tr>
+<td></td>
+<td>Lainnya</td>
+</tr>
+<tr>
+<td></td>
+<td>Kegiatan yang Belum Jelas Batasannya</td>
+</tr>
+<tr>
+<td></td>
+<td>Tidak Bekerja / Bukan Pelajar</td>
+</tr>
+<tr>
+<td></td>
+<td>Pelajar / Mahasiswa</td>
+</tr>
+<tr>
+<td></td>
+<td>Real Estate, Usaha Persewaan, dan Jasa Perusahaan</td>
+</tr>
+</tbody></table>
+<h2 id='job-online'>Job Online</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobOnline</td>
+<td>Berbasis Internet / online <div style="width:40vh"></td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>Tidak Berbasis Internet / Offline</td>
+</tr>
+</tbody></table>
+<h2 id='income'>Income</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>Rp 0 - Rp 2.967.020 <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>Rp 2.967.021 - Rp 5.934.040</td>
+</tr>
+<tr>
+<td></td>
+<td>Rp 5.934.041 - Rp 11.868.080</td>
+</tr>
+<tr>
+<td>income</td>
+<td>Rp 11.868.081 - Rp 25.000.000</td>
+</tr>
+<tr>
+<td></td>
+<td>Rp 25.000.001 - Rp 208.333.333</td>
+</tr>
+<tr>
+<td></td>
+<td>Rp 208.333.334 - Rp 4.166.666.667</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>&gt; Rp 4.166.666.667</td>
+</tr>
+</tbody></table>
+<h2 id='asset'>Asset</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>&lt; Rp 12.500.000 <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>Rp 12.500.001 - Rp 50.000.000</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>Rp 50.000.001 - Rp 500.000.000</td>
+</tr>
+<tr>
+<td></td>
+<td>Rp 500.000.001 - 50.000.000.000</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>&gt; Rp50.000.000.000</td>
+</tr>
+</tbody></table>
+<h2 id='home-ownership'>Home Ownership</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>homeOwnership</td>
+<td>BUKAN MILIK SENDIRI <div style="width:40vh"></td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>MILIK SENDIRI</td>
+</tr>
+</tbody></table>
+<h2 id='business-ownership'>Business Ownership</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>businessOwnership</td>
+<td>BUKAN MILIK SENDIRI <div style="width:40vh"></td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>MILIK SENDIRI</td>
+</tr>
+</tbody></table>
+<h2 id='emergency-contact-relationship'>Emergency Contact Relationship</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>Saudara <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>Istri</td>
+</tr>
+<tr>
+<td>emergencyContactRelationship</td>
+<td>Suami</td>
+</tr>
+<tr>
+<td></td>
+<td>Adik</td>
+</tr>
+<tr>
+<td></td>
+<td>Kakak</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>Orang Tua</td>
+</tr>
+</tbody></table>
+<h2 id='religion'>Religion</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>Islam <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>Katolik</td>
+</tr>
+<tr>
+<td></td>
+<td>Protestan</td>
+</tr>
+<tr>
+<td>religion</td>
+<td>Hindu</td>
+</tr>
+<tr>
+<td></td>
+<td>Budha</td>
+</tr>
+<tr>
+<td></td>
+<td>Konghucu</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>Lain - lain</td>
+</tr>
+</tbody></table>
+<h2 id='education'>Education</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>SD <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>SMP</td>
+</tr>
+<tr>
+<td></td>
+<td>SMA / SMK</td>
+</tr>
+<tr>
+<td>education</td>
+<td>DIPLOMAN</td>
+</tr>
+<tr>
+<td></td>
+<td>SARJANA</td>
+</tr>
+<tr>
+<td></td>
+<td>MAGISTER</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>DOKTOR</td>
+</tr>
+</tbody></table>
+<h2 id='work-experience'>Work Experience</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>Pelajar atau belum pernah bekerja <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>&lt; 1 Tahun</td>
+</tr>
+<tr>
+<td>workExperience</td>
+<td>1 s/d 2 Tahun</td>
+</tr>
+<tr>
+<td></td>
+<td>2 s/d 3 Tahun</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>&gt; 3 Tahun</td>
+</tr>
+</tbody></table>
+<h2 id='bank-names'>Bank Names</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>BANK SINARMAS <div style="width:40vh"></td>
+</tr>
+<tr>
+<td>bankName</td>
+<td>Bank Central Asia</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>BNI</td>
+</tr>
+</tbody></table>
+<h2 id='legal-type'>Legal Type</h2>
+<table><thead>
+<tr>
+<th>Field Name</th>
+<th>Option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td>PT   <div style="width:40vh"></td>
+</tr>
+<tr>
+<td></td>
+<td>Koperasi</td>
+</tr>
+<tr>
+<td></td>
+<td>Pemerintah Pusat</td>
+</tr>
+<tr>
+<td>legalType</td>
+<td>Pemerintah Daerah</td>
+</tr>
+<tr>
+<td></td>
+<td>Lain - lain</td>
+</tr>
+<tr>
+<td></td>
+<td>Perorangan</td>
+</tr>
+<tr>
+<td><div style="width:25vh"></td>
+<td>Badan Hukum</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="cURL">cURL</a>
+                <a href="#" data-language-name="Javascript">Javascript</a>
           </div>
       </div>
     </div>
