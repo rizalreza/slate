@@ -2,14 +2,15 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+  - cURL
+  - Javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+#   - <a href='#'>Sign Up for a Developer Key</a>
+#   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - mapping
 
 search: true
 
@@ -36,6 +37,20 @@ Catatan : Mohon menginformasikan IP yang akan melakukan request ke API agar dima
 
 
 ```shell
+curl --location --request POST '{{host}}/v1/borrower/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "map" : "PERSONAL_BORROWER",
+    "productCode" : "95",
+    "phoneNumber" : "62123123123",
+    "email" : "johndoe@mail.com",
+    "fullName" : "John",
+    "idNumber" : "362638287638783",
+    "birthDate" : "30/09/1999"
+}'
+```
+
+```Javascript
 curl --location --request POST '{{host}}/v1/borrower/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
