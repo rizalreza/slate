@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Kittn API"
+            content="Documentation Dompet Kilat Middleware API"
         >
     <title>API Reference</title>
 
@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -303,12 +303,9 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/dk-logo-a269faf1.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -319,19 +316,37 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#borrower" class="toc-h1 toc-link" data-title="Borrower">Borrower</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#register-borrower" class="toc-h2 toc-link" data-title="Register Borrower">Register Borrower</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#get-data-borrower" class="toc-h2 toc-link" data-title="Get Data Borrower">Get Data Borrower</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#loan" class="toc-h1 toc-link" data-title="Loan">Loan</a>
+              <ul class="toc-list-h2">
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#pengajuan-pinjaman" class="toc-h2 toc-link" data-title="Pengajuan Pinjaman">Pengajuan Pinjaman</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#disbursement" class="toc-h1 toc-link" data-title="Disbursement">Disbursement</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#callback-disbursement" class="toc-h2 toc-link" data-title="Callback Disbursement">Callback Disbursement</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#repayment" class="toc-h1 toc-link" data-title="Repayment">Repayment</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#callback-repayment" class="toc-h2 toc-link" data-title="Callback Repayment">Callback Repayment</a>
                   </li>
               </ul>
           </li>
@@ -348,184 +363,866 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<!-- Dokumentasi API  -->
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Welcome to the Dompet Kilat Middleware API</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<p>Catatan : Mohon menginformasikan IP yang akan melakukan request ke API agar dimasukan ke withelist IP </p>
+<h1 id='borrower'>Borrower</h1><h2 id='register-borrower'>Register Borrower</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'{{host}}/v1/borrower/register'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "map" : "PERSONAL_BORROWER",
+    "productCode" : "95",
+    "phoneNumber" : "62123123123",
+    "email" : "johndoe@mail.com",
+    "fullName" : "John",
+    "idNumber" : "362638287638783",
+    "birthDate" : "30/09/1999"
+}'</span>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Response Sukses:</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">139</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"borrowerBankId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobOnlineId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"incomeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"assetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"referenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workExperienceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"emergencyContactId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maritalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"educationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"religionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"borrowerType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERSONAL_BORROWER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62123123123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"idNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"362638287638783"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@mail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fullName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"birthDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1999-09-30T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"birthPlace"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"village"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"subdistrict"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"province"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"motherMaidenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobPosition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"familyCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"npwp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fotoKtp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fotoSelfie"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"isVerified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"borrowerBanks"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobTypes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobOnlines"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"incomes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"assets"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"borrowerReferences"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workExperiences"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"emergencyContacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maritals"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"educations"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"religions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-11T06:16:30Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-11T06:16:30Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"deletedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
+<blockquote>
+<p>Response Jika Gagal (Sudah Terdaftar):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error 1062: Duplicate entry '362638287638783' for key 'id_number'"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>API Registrasi Borrower.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>POST {{host}}/v1/borrower/register</code></p>
+<h3 id='http-headers'>HTTP Headers</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>Ya</td>
+<td>-</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h3 id='request-body'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>map</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>PERSONAL_BORROWER</td>
+</tr>
+<tr>
+<td>productCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode Produk</td>
+</tr>
+<tr>
+<td>phoneNumber</td>
+<td>number</td>
+<td>Ya</td>
+<td>Nomor Handphone Peminjam yang akan dijadikan sebagai username peminjam. Hanya boleh diawali dengan angka 62. phoneNumber harus unik (tidak boleh duplikat).</td>
+</tr>
+<tr>
+<td>email</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Email Peminjam. Email harus unik (tidak boleh duplikat).</td>
+</tr>
+<tr>
+<td>fullName</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nama Lengkap Peminjam</td>
+</tr>
+<tr>
+<td>idNumber</td>
+<td>varchar(16)</td>
+<td>Ya</td>
+<td>Berisi Nomor Induk Kependudukan (NIK). NIK harus unik (tidak boleh duplikat).</td>
+</tr>
+<tr>
+<td>birthDate</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Tanggal Lahir Peminjam. Format: (dd/MM/yyyy) Contoh: 30/09/1999</td>
+</tr>
+</tbody></table>
+<h2 id='get-data-borrower'>Get Data Borrower</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'{{host}}v1/borrower/{idNumber}'</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Response Sukses:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"map"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERSONAL_BORROWER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"productCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62123123123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"idNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"362638287638783"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@mail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fullName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"birthDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30/09/1999"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"birthPlace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jakarta"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"officeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PT ABC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15/04/2001"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jl Merdeka No. 20"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"village"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kampung Jawa"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"subdistrict"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tanah Abang"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jakarta Pusat"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DKI Jakarta"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10250"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"plafons"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"job"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karyawan Swasta"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perantara Keuangan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"jobOnline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berbasis Internet / online"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"income"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rp 5.934.041 - Rp 11.868.080"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rp 50.000.001 - Rp 500.000.000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"homeOwnership"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MILIK SENDIRI"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"religion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Islam"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maritalStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BELUM KAWIN"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"education"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SARJANA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"motherMaidenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shizuka"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"emergencyContactNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6281234567892"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"emergencyContactName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"emergencyContactRelationship"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Saudara"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BANK SINARMAS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bankAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"007812342"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"familyCard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123123123123"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workExperience"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt; 3 Tahun"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fotoKtp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAA+gAAAPoCAYAAABNo9TkAAAgAElEQVR4nOzd+ VcTf7ru/fOnP2fv091fBZkcUeZ5HpRBQRQQEUGcERRBEMhQQ+a5klzPD9UJGFNJZeK uJhrWuFxhBopffaL941/J//9/8BYub3z//wXuP/1s9a/asda"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fotoSelfie"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAA+gAAAPoCAYAAABNo9TkAAAgAElEQVR4nOzd+ VcTf7ru/fOnP2fv091fBZkcUeZ5HpRBQRQQEUGcERRBEMhQQ+a5klzPD9UJGFNJZeK uu/JhrWuFxhBopffaL941/J//9/8BYub3z//wXuP/1s9a/asda"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"loanData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"tenor"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"contractNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEKENAJA-01FS3YVWZEZ93CBTRHJ724N5CH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"contractDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11/01/2022"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"references"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"interest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"businessAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jl. Kyai Tapa"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"businessVillage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grogol"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"businessSubdistrict"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grogol Petamburan"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"businessCity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jakarta Barat"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"businessProvince"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DKI Jakarta"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"businessOwnership"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MILIK SENDIRI"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"npwp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789012345"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"jobPosition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Staff Akunting"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<blockquote>
+<p>Response Jika Gagal (Data Tidak Ditemukan):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IdNumber 3626382876387831 record not found"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>API GET Data Borrower.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET {{host}}/v1/borrower/{idNumber}</code></p>
+<h3 id='http-headers-2'>HTTP Headers</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>Ya</td>
+<td>-</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h1 id='loan'>Loan</h1><h2 id='pengajuan-pinjaman'>Pengajuan Pinjaman</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'{{host}}/v1/loan/register'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "map" : "PERSONAL_BORROWER",
+    "productCode" : "95",
+    "phoneNumber" : "62123123123",
+    "email" : "johndoe@mail.com",
+    "fullName" : "John",
+    "idNumber" : "362638287638783",
+    "gender" : "L",
+    "birthPlace" : "Jakarta",
+    "birthDate" : "30/09/1999",
+    "officeName" : "PT ABC",
+    "startDate" : "15/04/2001",
+    "address" : "Jl Merdeka No. 20",
+    "village" : "Kampung Jawa",
+    "subdistrict": "Tanah Abang",
+    "city": "Jakarta Pusat",
+    "province": "DKI Jakarta",
+    "postalCode": "10250",
+    "plafons": "1000000",
+    "job": "Karyawan Swasta",
+    "jobType": "Perantara Keuangan",
+    "jobOnline": "Berbasis Internet / online", 
+    "income": "Rp 5.934.041 - Rp 11.868.080", 
+    "homeOwnership": "MILIK SENDIRI", 
+    "emergencyContactRelationship": "Saudara", 
+    "emergencyContactName": "Banu", 
+    "emergencyContactNumber": "6281234567892", 
+    "religion": "Islam",
+    "maritalStatus": "BELUM KAWIN",
+    "education": "SARJANA", 
+    "motherMaidenName": "Shizuka",
+    "bankName": "BANK SINARMAS", 
+    "bankAccountNumber": "007812342", 
+    "asset":"Rp 50.000.001 - Rp 500.000.000", 
+    "familyCard": "123123123123123", 
+    "workExperience": "&gt; 3 Tahun",
+    "fotoKtp":"iVBORw0KGgoAAAANSUhEUgAAA+gAAAPoCAYAAABNo9TkAAAgAElEQVR4nOzd+ VcTf7ru/fOnP2fv091fBZkcUeZ5HpRBQRQQEUGcERRBEMhQQ+a5klzPD9UJGFNJZeK uJhrWuFxhBopffaL941/J//9/8BYub3z//wXuP/1s9a/asda",
+    "fotoSelfie" : "iVBORw0KGgoAAAANSUhEUgAAA+gAAAPoCAYAAABNo9TkAAAgAElEQVR4nOzd+ VcTf7ru/fOnP2fv091fBZkcUeZ5HpRBQRQQEUGcERRBEMhQQ+a5klzPD9UJGFNJZeK uu/JhrWuFxhBopffaL941/J//9/8BYub3z//wXuP/1s9a/asda",
+    "loanData": { 
+        "tenor": 2,
+        "unit": "MONTH",
+        "amount": "1000000" 
+    },
+    "references": {
+        "interest": "1.0",
+        "businessAddress": "Jl. Kyai Tapa", 
+        "businessVillage": "Grogol", 
+        "businessSubdistrict": "Grogol Petamburan", 
+        "businessCity": "Jakarta Barat", 
+        "businessProvince": "DKI Jakarta", 
+        "businessOwnership": "MILIK SENDIRI", 
+        "npwp": "123456789012345",
+        "jobPosition": "Staff Akunting"
+    }
+}
+'</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Response Sukses:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">141</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"borrowerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">139</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"productId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INACTIVE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"loanCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"plafons"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tenor"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tenorUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"contractNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"contractDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"interest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-11T06:58:03.866405316Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-11T06:16:30Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"deletedAt"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
+<blockquote>
+<p>Response Jika Gagal (Sudah Terdaftar):</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"borrower with idNumber 362638287638712, is not found"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>API Pengajuan Pinjaman.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p><code>POST {{host}}/v1/loan/register</code></p>
+<h3 id='http-headers-3'>HTTP Headers</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>Ya</td>
+<td>-</td>
 </tr>
 </tbody></table>
+<h3 id='request-body-2'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>map</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>PERSONAL_BORROWER</td>
+</tr>
+<tr>
+<td>productCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode produk</td>
+</tr>
+<tr>
+<td>phoneNumber</td>
+<td>number</td>
+<td>Ya</td>
+<td>Nomor handphone peminjam yang akan dijadikan sebagai username peminjam. Hanya boleh diawali dengan angka 62. phoneNumber harus unik (tidak boleh duplikat).</td>
+</tr>
+<tr>
+<td>email</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Email peminjam. email harus unik (tidak boleh duplikat).</td>
+</tr>
+<tr>
+<td>fullName</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nama lengkap peminjam</td>
+</tr>
+<tr>
+<td>idNumber</td>
+<td>varchar(16)</td>
+<td>Ya</td>
+<td>Berisi Nomor Induk Kependudukan (NIK). NIK harus unik (tidak boleh duplikat).</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>varchar(1)</td>
+<td>Ya</td>
+<td>Berisi kode jenis kelamin (L/P)</td>
+</tr>
+<tr>
+<td>birthPlace</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Tempat lahir peminjam</td>
+</tr>
+<tr>
+<td>birthDate</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Tanggal lahir peminjam. Format: (dd/MM/yyyy) Contoh: 30/09/1999</td>
+</tr>
+<tr>
+<td>officeName</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nama kantor tempat peminjam</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>date</td>
+<td>Ya</td>
+<td>Tanggal berdiri usaha peminjam atau mulai bekerja. Format: (dd/MM/yyyy = 15/04/2001)</td>
+</tr>
+<tr>
+<td>address</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Alamat peminjam</td>
+</tr>
+<tr>
+<td>village</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Desa/kelurahan peminjam</td>
+</tr>
+<tr>
+<td>subdistrict</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kecamatan peminjam</td>
+</tr>
+<tr>
+<td>city</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kota peminjam</td>
+</tr>
+<tr>
+<td>province</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Provinsi peminjam</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode Pos peminjam</td>
+</tr>
+<tr>
+<td>plafons</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Plafons yang akan diberikan kepada peminjam</td>
+</tr>
+<tr>
+<td>job</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Pekerjaan peminjam</td>
+</tr>
+<tr>
+<td>jobType</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Jenis pekerjaan peminjam</td>
+</tr>
+<tr>
+<td>jobOnline</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Data usaha online sesuai mapping yang diberikan</td>
+</tr>
+<tr>
+<td>income</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Rentang penghasilan peminjam</td>
+</tr>
+<tr>
+<td>homeOwnership</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Status kepemilikan rumah</td>
+</tr>
+<tr>
+<td>emergencyContactName</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nama kontak darurat peminjam</td>
+</tr>
+<tr>
+<td>emergencyContactNumber</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nomor handphone kontak darurat peminjam. Hanya boleh diawali dengan angka 62.</td>
+</tr>
+<tr>
+<td>emergencyContactRelationship</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Hubungan peminjam dengan kontak darurat</td>
+</tr>
+<tr>
+<td>religion</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Agama peminjam</td>
+</tr>
+<tr>
+<td>maritalStatus</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Status perkawinan peminjam</td>
+</tr>
+<tr>
+<td>education</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Pendidikan terakhir peminjam</td>
+</tr>
+<tr>
+<td>motherMaidenName</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nama gadis ibu kandung peminjam</td>
+</tr>
+<tr>
+<td>bankName</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nama bank peminjam</td>
+</tr>
+<tr>
+<td>bankAccountNumber</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nomor rekening bank peminjam</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Rentang nilai aset peminjam</td>
+</tr>
+<tr>
+<td>familyCard</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Nomor kartu keluarga peminjam</td>
+</tr>
+<tr>
+<td>workExperience</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Pengalaman bekerja peminjam</td>
+</tr>
+<tr>
+<td>fotoKtp</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Link file foto KTP peminjam</td>
+</tr>
+<tr>
+<td>fotoSelfie</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Link file foto selfie peminjam</td>
+</tr>
+<tr>
+<td>loanData</td>
+<td>JSON</td>
+<td>Ya</td>
+<td>Rincian pinjaman</td>
+</tr>
+<tr>
+<td>references</td>
+<td>JSON</td>
+<td>Ya</td>
+<td>Referensi</td>
+</tr>
+</tbody></table>
+<h1 id='disbursement'>Disbursement</h1><h2 id='callback-disbursement'>Callback Disbursement</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'{{host}}/v1/loan/disburse'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "transactionId"  : "cb82f2ea-901d-49cc-97d3-34846d8d8e29",
+    "loanCode" : "LC1635132008",
+    "bankCode" : "BNI",
+    "paymentAccountNumber" : "8808999966040139",
+    "status" : "active",
+    "loanAmount" : 1000000,
+    "loanAmountPaid" : 0,
+    "tenor": 4,
+    "tenorUnit" : "day",
+    "numberOfPay" : 0,
+    "histories" : null
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>Response Sukses:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>API Callback Informasi Pencairan Dana</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST {{host}}/v1/loan/register</code></p>
+<h3 id='http-headers-4'>HTTP Headers</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>Ya</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-3'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionId</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Transaction ID referensi</td>
+</tr>
+<tr>
+<td>loanCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode pinjaman</td>
+</tr>
+<tr>
+<td>bankCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode bank untuk pencairan</td>
+</tr>
+<tr>
+<td>paymentAccountNumber</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>No VA untuk repayment</td>
+</tr>
+<tr>
+<td>status</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Status Pinjaman, active, completed, rejected, closed</td>
+</tr>
+<tr>
+<td>loanAmount</td>
+<td>int</td>
+<td>Ya</td>
+<td>Jumlah pinjaman</td>
+</tr>
+<tr>
+<td>loanAmountPaid</td>
+<td>int</td>
+<td>Tidak</td>
+<td>Jumlah pembayaran (will be filled when re-payment)</td>
+</tr>
+<tr>
+<td>tenor</td>
+<td>int</td>
+<td>Ya</td>
+<td>Jumlah lama pinjaman</td>
+</tr>
+<tr>
+<td>tenorUnit</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Tipe tenor pinjaman</td>
+</tr>
+<tr>
+<td>numberOfPay</td>
+<td>int</td>
+<td>Tidak</td>
+<td>Jumlah pembayaran yang sudah di lakukan (will be filled when re- payment)</td>
+</tr>
+<tr>
+<td>histories</td>
+<td>Array</td>
+<td>Tidak</td>
+<td>Object array data pembayaran</td>
+</tr>
+</tbody></table>
+<h1 id='repayment'>Repayment</h1><h2 id='callback-repayment'>Callback Repayment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'{{host}}/v1/callback/loan/repayment'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "transactionId"  : "cb82f2ea-901d-49cc-97d3-34846d8d8e29",
+    "loanCode" : "LC1635132008",
+    "bankCode" : "BNI",
+    "paymentAccountNumber" : "8808999966040139",
+    "status" : "completed",
+    "loanAmount" : 1000000,
+    "loanAmountPaid" : 250000,
+    "tenor": 4,
+    "tenorUnit" : "day",
+    "numberOfPay" : 1,
+    "histories": [
+        {
+            "transactionTime": "2021-10-25T15:20:16.921Z", 
+            "paymentAmount": 250000
+        } 
+    ]
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>Response Sukses:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>API callback informasi pembayaran dari customer</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST {{host}}/v1/callback/loan/repayment</code></p>
+<h3 id='http-headers-5'>HTTP Headers</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+<td>Ya</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-4'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Mandatory</th>
+<th>Keterangan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionId</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Transaction ID referensi</td>
+</tr>
+<tr>
+<td>loanCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode pinjaman</td>
+</tr>
+<tr>
+<td>bankCode</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Kode bank untuk pencairan</td>
+</tr>
+<tr>
+<td>paymentAccountNumber</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>No VA untuk repayment</td>
+</tr>
+<tr>
+<td>status</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Status Pinjaman, active, completed, rejected, closed</td>
+</tr>
+<tr>
+<td>loanAmount</td>
+<td>int</td>
+<td>Ya</td>
+<td>Jumlah pinjaman</td>
+</tr>
+<tr>
+<td>loanAmountPaid</td>
+<td>int</td>
+<td>Tidak</td>
+<td>Jumlah pembayaran (will be filled when re-payment)</td>
+</tr>
+<tr>
+<td>tenor</td>
+<td>int</td>
+<td>Ya</td>
+<td>Jumlah lama pinjaman</td>
+</tr>
+<tr>
+<td>tenorUnit</td>
+<td>varchar</td>
+<td>Ya</td>
+<td>Tipe tenor pinjaman</td>
+</tr>
+<tr>
+<td>numberOfPay</td>
+<td>int</td>
+<td>Tidak</td>
+<td>Jumlah pembayaran yang sudah di lakukan (will be filled when re- payment)</td>
+</tr>
+<tr>
+<td>histories</td>
+<td>Array</td>
+<td>Tidak</td>
+<td>Object array data pembayaran</td>
+</tr>
+</tbody></table>
+
+<!-- <aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside>  -->
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
@@ -589,9 +1286,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
