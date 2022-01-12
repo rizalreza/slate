@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;cURL&quot;,&quot;Javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -305,8 +305,7 @@
     <div class="toc-wrapper">
       <img src="images/dk-logo-a269faf1.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="cURL">cURL</a>
-              <a href="#" data-language-name="Javascript">Javascript</a>
+              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -417,17 +416,6 @@
     "idNumber" : "362638287638783",
     "birthDate" : "30/09/1999"
 }'</span>
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>curl --location --request POST '{{host}}/v1/borrower/register' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "map" : "PERSONAL_BORROWER",
-    "productCode" : "95",
-    "phoneNumber" : "62123123123",
-    "email" : "johndoe@mail.com",
-    "fullName" : "John",
-    "idNumber" : "362638287638783",
-    "birthDate" : "30/09/1999"
-}'
 </code></pre></div>
 <blockquote>
 <p>Response Sukses:</p>
@@ -1712,8 +1700,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="cURL">cURL</a>
-                <a href="#" data-language-name="Javascript">Javascript</a>
+                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>
